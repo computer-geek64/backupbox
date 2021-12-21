@@ -3,3 +3,4 @@
 
 useradd -ms /bin/false "$1"
 smbpasswd -a "$1"
+usermod -aG family "$1"
