@@ -2,7 +2,7 @@
 # run.sh
 
 docker build -t samba .
-docker create --network=host -v "/data/samba/family:/data/family" -v "/data/samba/users:/home" --restart=unless-stopped --name samba samba
+docker create --network=host -v "/data/nas/family:/data/family" -v "/data/nas/users:/home" --restart=unless-stopped --name samba samba
 docker container start samba
 
 # Add Samba users with:
