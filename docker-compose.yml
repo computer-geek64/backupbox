@@ -1,0 +1,38 @@
+# docker-compose.yml
+
+services:
+  samba:
+    container_name: backup-samba
+    build:
+      context: samba
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - type: bind
+        source: /data/nas/samba/passdb.tdb
+        target: /var/lib/samba/private/passdb.tdb
+      - type: bind
+        source: /data/nas/family
+        target: /data/family
+      - type: bind
+        source: /data/nas/users
+        target: /home
+      - type: bind
+        source: /data/nas/windows_backup
+        target: /data/windows_backup
+  nginx:
+    container_name: backup-nginx
+    image: nginx:latest
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - type: bind
+        source: ./nginx/src/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+      - type: bind
+        source: /home/ashish/videos/movies
+        target: /data/movies
+      #- type: bind
+        #source: /data/videos
+        #target: /data/videos
