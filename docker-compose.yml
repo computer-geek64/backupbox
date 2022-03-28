@@ -33,6 +33,6 @@ services:
       - type: bind
         source: /home/ashish/videos/movies
         target: /data/movies
-      #- type: bind
-        #source: /data/videos
-        #target: /data/videos
+      - type: bind
+        source: /data/videos
+        target: /data/videos
